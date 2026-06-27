@@ -1,0 +1,25 @@
+{
+  "name": "tidepool-testbed",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "bun": ">=1.2"
+  },
+  "scripts": {
+    "format": "biome format --write .",
+    "lint": "biome check .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "commitlint": "commitlint --last --verbose",
+    "check": "biome check . && bun run typecheck && bun run test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.1",
+    "@commitlint/cli": "21.1.0",
+    "@commitlint/config-conventional": "21.1.0",
+    "@types/bun": "1.3.14",
+    "typescript": "6.0.3",
+    "vitest": "4.1.9"
+  }
+}
