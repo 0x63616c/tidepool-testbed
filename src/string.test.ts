@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { slugify } from './string.ts';
+import { slugify, truncate } from './string.ts';
 
 describe('slugify', () => {
   it('lowercases, trims, replaces spaces, strips invalid chars, and collapses dashes', () => {
@@ -7,5 +7,16 @@ describe('slugify', () => {
     expect(slugify('Hello, World!')).toBe('hello-world');
     expect(slugify('foo   bar')).toBe('foo-bar');
     expect(slugify('foo---bar')).toBe('foo-bar');
+  });
+});
+
+describe('truncate', () => {
+  it('leaves short and exact-length strings unchanged', () => {
+    expect(truncate('hi', 3)).toBe('hi');
+    expect(truncate('hey', 3)).toBe('hey');
+  });
+
+  it('truncates one-over strings to max chars total', () => {
+    expect(truncate('four', 3)).toBe('fo…');
   });
 });
