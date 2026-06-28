@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { slugify, truncate } from './string.ts';
+import { slugify, truncate, wordCount } from './string.ts';
 
 describe('slugify', () => {
   it('lowercases, trims, replaces spaces, strips invalid chars, and collapses dashes', () => {
@@ -21,5 +21,23 @@ describe('truncate', () => {
 
   it('truncates one over to max chars total', () => {
     expect(truncate('hello!', 5)).toBe('hell…');
+  });
+});
+
+describe('wordCount', () => {
+  it('returns 0 for an empty string', () => {
+    expect(wordCount('')).toBe(0);
+  });
+
+  it('returns 1 for a single word', () => {
+    expect(wordCount('hello')).toBe(1);
+  });
+
+  it('counts multiple words separated by spaces', () => {
+    expect(wordCount('one two three')).toBe(3);
+  });
+
+  it('ignores leading and trailing whitespace', () => {
+    expect(wordCount('  one two  ')).toBe(2);
   });
 });
