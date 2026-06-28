@@ -1,5 +1,23 @@
 import { describe, expect, it } from 'vitest';
-import { slugify, truncate } from './string.ts';
+import { capitalize, slugify, truncate } from './string.ts';
+
+describe('capitalize', () => {
+  it('keeps the empty string unchanged', () => {
+    expect(capitalize('')).toBe('');
+  });
+
+  it('upper-cases a single lowercase character', () => {
+    expect(capitalize('a')).toBe('A');
+  });
+
+  it('leaves an already-capitalized word unchanged', () => {
+    expect(capitalize('Hello')).toBe('Hello');
+  });
+
+  it('leaves a leading digit unchanged', () => {
+    expect(capitalize('1abc')).toBe('1abc');
+  });
+});
 
 describe('slugify', () => {
   it('lowercases, trims, replaces spaces, strips invalid chars, and collapses dashes', () => {
